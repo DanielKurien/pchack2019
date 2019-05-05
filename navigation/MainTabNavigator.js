@@ -1,5 +1,6 @@
 import React from 'react';
 import { Platform } from 'react-native';
+import { Notifications } from 'expo';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 
 import TabBarIcon from '../components/TabBarIcon';
@@ -9,10 +10,13 @@ import SettingsScreen from '../screens/SettingsScreen';
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
-  
 });
 
+
 HomeStack.navigationOptions = {
+  topBar:{visible: false},
+  navigationBarStyle : {navBarHidden: true },
+  tabBarVisible: false,
   tabBarLabel: 'Home',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
@@ -22,7 +26,6 @@ HomeStack.navigationOptions = {
           ? `ios-information-circle${focused ? '' : '-outline'}`
           : 'md-information-circle'
       }
-      
     />
   ),
 };
@@ -32,6 +35,8 @@ const LinksStack = createStackNavigator({
 });
 
 LinksStack.navigationOptions = {
+  navigationBarStyle : {navBarHidden: true },
+  tabBarVisible: false,
   tabBarLabel: 'Links',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
@@ -59,5 +64,4 @@ export default createBottomTabNavigator({
   HomeStack,
   LinksStack,
   SettingsStack,
-  
 });

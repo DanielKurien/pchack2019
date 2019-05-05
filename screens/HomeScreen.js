@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import LinksScreen from './LinksScreen.js'; 
+import { NavigationActions } from "react-navigation";
 import {
   StyleSheet,
   Text,
@@ -10,6 +12,17 @@ import {
   Alert
 } from 'react-native';
 import { WebBrowser } from 'expo';
+import {createStackNavigator, createAppContainer} from 'react-navigation';
+
+const MainNavigator = createStackNavigator({
+  Links: {
+    screen: LinksScreen,
+ }
+});
+
+
+const App = createAppContainer(MainNavigator);
+
 
 export default class HelloWorldApp extends Component {
 
@@ -24,9 +37,9 @@ export default class HelloWorldApp extends Component {
   onClickListener = (viewId) => {
     Alert.alert("Alert", "Button pressed "+viewId);
   }
-
   render() {
-    
+  const {navigate} = this.props.navigation;
+  
     let pic = {
       uri:'https://mir-s3-cdn-cf.behance.net/project_modules/disp/496ecb14589707.562865d064f9e.png'
        };
@@ -54,7 +67,7 @@ export default class HelloWorldApp extends Component {
               onChangeText={(password) => this.setState({password})}/>
         </View>
 
-        <TouchableHighlight style={[styles.buttonContainer, styles.loginButton]} onPress={() => this.onClickListener('login')}>
+        <TouchableHighlight style={[styles.buttonContainer, styles.loginButton]} onPress={function(){navigate('Links');  Alert.alert("Status:", "Login Successful");}}>
           <Text style={styles.loginText}>Login</Text>
         </TouchableHighlight>
       </View>
@@ -119,7 +132,7 @@ const styles = StyleSheet.create({
     width: 130,
     height: 160,
     alignItems:'center',
-    marginBottom: 30,
+    marginBottom: 40,
     resizeMode:'contain'
     }
 });
