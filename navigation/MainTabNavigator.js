@@ -9,6 +9,7 @@ import SettingsScreen from '../screens/SettingsScreen';
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
+  
 });
 
 HomeStack.navigationOptions = {
@@ -21,6 +22,7 @@ HomeStack.navigationOptions = {
           ? `ios-information-circle${focused ? '' : '-outline'}`
           : 'md-information-circle'
       }
+      
     />
   ),
 };
@@ -57,4 +59,5 @@ export default createBottomTabNavigator({
   HomeStack,
   LinksStack,
   SettingsStack,
+  
 });
